@@ -33,19 +33,19 @@
             <fieldset>
                 <h2>через ajax</h2>
                 <div class="input-group">
-                    <input type="text" class="form-control" name="name" placeholder="name">
+                    <input type="text" class="form-control" name="name" placeholder="name" value="name">
                 </div>
                 <div class="input-group">
-                    <input type="text" class="form-control" name='surname' placeholder="surname">
+                    <input type="text" class="form-control" name='surname' placeholder="surname" value="surname">
                 </div>
                 <div class="input-group">
-                    <input type="number" class="form-control" name='phone' placeholder="phone">
+                    <input type="number" class="form-control" name='phone' placeholder="phone" value="123">
                 </div>
                 <div class="input-group">
-                    <input type="email" class="form-control" name='email' placeholder="email">
+                    <input type="email" class="form-control" name='email' placeholder="email" value="email">
                 </div>
                 <div class="input-group">
-                    <textarea name="text" placeholder="message"></textarea>
+                    <textarea name="text" placeholder="message">dfgdsghffd</textarea>
                 </div>
                 <div class="input-group">
                     <input type="submit" class="form-control submit" placeholder="submit">
@@ -56,14 +56,15 @@
             $(document).ready(function(){
                 $('.submit').click(function(event){
                     event.preventDefault();
-                    var data = JSON.stringify( jQuery(".ajaxForm").serializeArray());
-                    //console.log(data);
+                    var data = jQuery(".ajaxForm").serialize();
+                    console.log(data);
                     $.ajax({
                         url: 'ajax.php',
-                        data: data,
+                        data: jQuery(".ajaxForm").serialize(),
                         type: "POST",
                         success: function(resp){
-                            console.log(JSON.parse(resp));
+                            console.log(resp);
+                            $('body').append('<div class="respond"><pre>'+resp+'</pre></div>')
                         }
                     });
 
