@@ -84,10 +84,12 @@
                                     type: "POST",
                                     success: function(resp){
                                         console.log(resp);
-                                        respObj = JSON.parse(resp);
-                                        if(respObj.console == 'Record updated successfully'){
-                                            location.reload();
-                                        } else {
+                                        try {
+                                           respObj = JSON.parse(resp);
+                                            if(respObj.console == 'Record updated successfully'){
+                                                location.reload();
+                                            }
+                                        } catch(e) {
                                             $('body').append('<div class="respond"><pre>'+resp+'</pre></div>')
                                         }
                                     }
